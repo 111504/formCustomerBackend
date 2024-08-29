@@ -1,28 +1,23 @@
 package formCustomer.demo.filter;
 
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
+import formCustomer.demo.common.Const;
+import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.logging.Filter;
+
 import java.util.logging.LogRecord;
 
-@Component
+
 public class CorsFilter implements Filter {
+
     @Override
-    public boolean isLoggable(LogRecord record) {
-        return false;
-    }
-
-
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-
+        System.out.println("進入在CROS之後");
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         HttpServletRequest httpRequest = (HttpServletRequest) request;
 
@@ -37,9 +32,8 @@ public class CorsFilter implements Filter {
             return;
         }
 
+
         chain.doFilter(request, response);
     }
-
-
 
 }
