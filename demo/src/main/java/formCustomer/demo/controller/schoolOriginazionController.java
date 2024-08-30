@@ -5,6 +5,7 @@ import formCustomer.demo.entity.system.Organization;
 import formCustomer.demo.service.OrganizationService;
 import formCustomer.demo.vo.response.Person;
 import formCustomer.demo.entity.RestBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +16,16 @@ import java.util.*;
 @RestController
 @RequestMapping("/api/v1/")
 public class schoolOriginazionController {
+
+
+    private final OrganizationService organizationService;
+
+    @Autowired
+    public schoolOriginazionController(OrganizationService organizationService) {
+        this.organizationService = organizationService;
+    }
+
+
     //傳送部們編號 回傳人員名單
     @GetMapping("persons")
     public String schoolOriginazionePeople(@RequestParam String depId) {
@@ -47,7 +58,8 @@ public class schoolOriginazionController {
     @GetMapping("department")
     public String schoolDepartment() {
 
-        List<Organization> organizations=OrganizationService.getAllOrganizations();
+
+        List<Organization> organizations=organizationService.getAllOrganizations();
 
 
 

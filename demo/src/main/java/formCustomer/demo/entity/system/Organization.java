@@ -1,55 +1,36 @@
 package formCustomer.demo.entity.system;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@Getter
 @Entity
-@Table(name="Organization")
+@Table(name="organization")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Organization {
+    // Getters and Setters
     @Id
-    @Column(name = "OrgID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int orgId;
 
-    @Column(name = "OrgName", length = 100, nullable = false)
+    @Column(name = "Org_Name", length = 100, nullable = false)
     private String orgName;
 
-    @Column(name = "OrgCode", length = 10, nullable = false, unique = true)
+    @Column(name = "Org_Code", length = 10, nullable = false, unique = true)
     private String orgCode;
 
-    // Constructors
-    public Organization() {}
-
-    public Organization(int orgId, String orgName, String orgCode) {
-        this.orgId = orgId;
+    public Organization(String orgName, String orgCode) {
         this.orgName = orgName;
         this.orgCode = orgCode;
     }
 
-    // Getters and Setters
-    public int getOrgId() {
-        return orgId;
-    }
 
-    public void setOrgId(int orgId) {
-        this.orgId = orgId;
-    }
 
-    public String getOrgName() {
-        return orgName;
-    }
 
-    public void setOrgName(String orgName) {
-        this.orgName = orgName;
-    }
-
-    public String getOrgCode() {
-        return orgCode;
-    }
-
-    public void setOrgCode(String orgCode) {
-        this.orgCode = orgCode;
-    }
 }

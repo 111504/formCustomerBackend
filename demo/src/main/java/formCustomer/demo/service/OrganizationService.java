@@ -9,11 +9,19 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class OrganizationService {
-    @Autowired
-    private static OrganizationRepository organizationRepository;
+public class OrganizationService   {
 
-    public static  List<Organization> getAllOrganizations() {return organizationRepository.findAll();}
+    private final OrganizationRepository organizationRepository;
+
+    @Autowired
+    public OrganizationService(OrganizationRepository organizationRepository) {
+        this.organizationRepository = organizationRepository;
+    }
+
+    public  List<Organization> getAllOrganizations() {   List<Organization> organizations = organizationRepository.findAll();
+        System.out.println("Organizations: " + organizations);
+        return organizations;
+    }
 
     public Optional<Organization> getOrganizationById(int id) {return organizationRepository.findById(id);}
 
