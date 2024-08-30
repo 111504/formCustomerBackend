@@ -1,4 +1,4 @@
-package formCustomer.demo.entity;
+package formCustomer.demo.vo.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

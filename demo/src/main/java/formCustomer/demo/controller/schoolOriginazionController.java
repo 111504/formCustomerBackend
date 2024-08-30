@@ -1,10 +1,10 @@
 package formCustomer.demo.controller;
 
 
-import formCustomer.demo.entity.Department;
-import formCustomer.demo.entity.Person;
+import formCustomer.demo.entity.system.Organization;
+import formCustomer.demo.service.OrganizationService;
+import formCustomer.demo.vo.response.Person;
 import formCustomer.demo.entity.RestBean;
-import jakarta.websocket.server.PathParam;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,12 +46,12 @@ public class schoolOriginazionController {
     /*回傳學校所有組織列表*/
     @GetMapping("department")
     public String schoolDepartment() {
-        List<Department> departments = Arrays.asList(
-                new Department("fin", "財務室"),
-                new Department("pur", "採購室"),
-                new Department("per", "人事室")
-        );
-        return RestBean.success(departments).asJsonString();
+
+        List<Organization> organizations=OrganizationService.getAllOrganizations();
+
+
+
+        return RestBean.success(organizations).asJsonString();
     }
 
 }

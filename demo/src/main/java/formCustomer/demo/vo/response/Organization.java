@@ -1,4 +1,4 @@
-package formCustomer.demo.entity;
+package formCustomer.demo.vo.response;
 
 
 import lombok.AllArgsConstructor;
@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Department {
-    String depId;//部門代號
-    String depName;//部門名稱
+public class Organization {
+    String OrgCode;//部門代號
+    String OrgName ;//部門名稱
 }
