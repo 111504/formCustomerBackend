@@ -5,11 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class Person {
-    private String id;
-    private String name;
-    private String jobtitle;
+public class Department {
+    String depId;//部門代號
+    String depName;//部門名稱
 }
