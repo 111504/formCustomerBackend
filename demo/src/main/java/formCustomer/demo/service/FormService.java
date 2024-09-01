@@ -12,9 +12,13 @@ import java.util.Optional;
 @Service
 public class FormService {
 
-    @Autowired
-    private FormRepository formRepository;
 
+    private final FormRepository formRepository;
+
+    @Autowired
+    public FormService(FormRepository formRepository) {
+        this.formRepository = formRepository;
+    }
     //列出所有表單
     public List<Form> getAllForms() {
         return formRepository.findAll();

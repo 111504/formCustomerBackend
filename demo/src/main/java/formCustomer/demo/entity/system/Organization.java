@@ -19,10 +19,10 @@ public class Organization {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int orgId;
 
-    @Column(name = "Org_Name", length = 100, nullable = false)
+    @Column(name = "org_name", length = 100, nullable = false)
     private String orgName;
 
-    @Column(name = "Org_Code", length = 10, nullable = false, unique = true)
+    @Column(name = "org_code", length = 10, nullable = false, unique = true)
     private String orgCode;
 
     public Organization(String orgName, String orgCode) {

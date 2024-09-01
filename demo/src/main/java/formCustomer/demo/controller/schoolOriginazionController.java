@@ -2,6 +2,7 @@ package formCustomer.demo.controller;
 
 
 import formCustomer.demo.entity.system.Organization;
+import formCustomer.demo.entity.system.Staff;
 import formCustomer.demo.service.OrganizationService;
 import formCustomer.demo.vo.response.Person;
 import formCustomer.demo.entity.RestBean;
@@ -24,45 +25,26 @@ public class schoolOriginazionController {
     public schoolOriginazionController(OrganizationService organizationService) {
         this.organizationService = organizationService;
     }
-
-
     //傳送部們編號 回傳人員名單
     @GetMapping("persons")
     public String schoolOriginazionePeople(@RequestParam String depId) {
-        ArrayList<Person> persons = new ArrayList<>();
-        switch (depId) {
-            case "fin":
-                persons.add(new Person("fin10012", "王美麗","二級專員"));
-                persons.add(new Person("fin54122", "林大名","二級專員"));
-                persons.add(new Person("fin10087", "宏大中","二級專員"));
-                break;
+        System.out.println("depId="+depId);
+        List<Staff> staffs;
+        staffs =  organizationService.getStaffByOrganizationCode(depId);
 
-            case "pur":
-                persons.add(new Person("pur10121", "王一一","二級專員"));
-                persons.add(new Person("pur54782", "林施韓","一級專員"));
-                persons.add(new Person("pur44155", "林與中","二級專員"));
-                break;
-            case "per":
-                persons.add(new Person("per15642","林至涵","主任秘書"));
-                persons.add(new Person("per25642","簡玲玉","主任副秘書"));
-                persons.add(new Person("per24232","師裕隆","副理"));
-                break;
 
+        if(staffs.isEmpty()){
+            return RestBean.error("error ,no Result").asJsonString();
+        }else{
+            staffs.forEach(staff -> System.out.println(staff));
         }
-
-
-        return RestBean.success(persons).asJsonString();
+        return RestBean.success(staffs).asJsonString();
     }
 
     /*回傳學校所有組織列表*/
     @GetMapping("department")
     public String schoolDepartment() {
-
-
         List<Organization> organizations=organizationService.getAllOrganizations();
-
-
-
         return RestBean.success(organizations).asJsonString();
     }
 
