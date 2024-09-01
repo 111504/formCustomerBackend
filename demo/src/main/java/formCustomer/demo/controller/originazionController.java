@@ -4,7 +4,6 @@ package formCustomer.demo.controller;
 import formCustomer.demo.entity.system.Organization;
 import formCustomer.demo.entity.system.Staff;
 import formCustomer.demo.service.OrganizationService;
-import formCustomer.demo.vo.response.Person;
 import formCustomer.demo.entity.RestBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,13 +15,13 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/api/v1/")
-public class schoolOriginazionController {
+public class originazionController {
 
 
     private final OrganizationService organizationService;
 
     @Autowired
-    public schoolOriginazionController(OrganizationService organizationService) {
+    public originazionController(OrganizationService organizationService) {
         this.organizationService = organizationService;
     }
     //傳送部們編號 回傳人員名單

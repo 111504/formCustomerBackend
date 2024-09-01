@@ -31,4 +31,16 @@ public class deviceFormController {
         return RestBean.success(formStations).asJsonString();
 
     }
+    //傳送表單內容 以及 表單修改後的簽核順序 創建人
+    @PostMapping("/formContent")
+    public String submitFormContent(@RequestParam String formId ) {
+        // 傳輸表單內容 簽核順序  創建人 創建表單時間 產生表單唯一編號  是哪一種表單
+
+        return RestBean.success().asJsonString();
+
+    }
+
+
+
+
 }
