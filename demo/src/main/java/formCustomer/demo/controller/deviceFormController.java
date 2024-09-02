@@ -1,8 +1,11 @@
 package formCustomer.demo.controller;
 
 
+import formCustomer.demo.entity.system.Staff;
+import formCustomer.demo.service.FormService;
 import formCustomer.demo.vo.response.FormStation;
 import formCustomer.demo.entity.RestBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -13,6 +16,13 @@ import java.util.List;
 @RequestMapping("/api/v1/forms")
 public class deviceFormController {
 
+    private final FormService service;
+
+    @Autowired
+    public deviceFormController(FormService service) {
+        this.service = service;
+    }
+
 
     @GetMapping("/test")
     public String test() {
@@ -21,14 +31,16 @@ public class deviceFormController {
     }
     //傳送表單編號
     @GetMapping("/formId")
-    public String submitForm(@RequestParam String formId ) {
-        // 傳輸表單編號 回傳表單資訊
-        List<FormStation>  formStations = Arrays.asList(
-                new FormStation(1, "二級專員","王治中"),
-                new FormStation(2, "一級專員","林愈停"),
-                new FormStation(3, "主任秘書", "陳詩涵")
-        );
-        return RestBean.success(formStations).asJsonString();
+    public String submitForm(@RequestParam int formId ) {
+     // 傳輸表單事件編號 回傳表單資訊
+        List<Staff> staffs;
+        staffs=service.getStaffDetailsByFormId(formId);
+        if(staffs.isEmpty()){
+            return RestBean.error("error ,no Result").asJsonString();
+        }else{
+            staffs.forEach(System.out::println);
+        }
+        return RestBean.success(staffs).asJsonString();
 
     }
     //傳送表單內容 以及 表單修改後的簽核順序 創建人

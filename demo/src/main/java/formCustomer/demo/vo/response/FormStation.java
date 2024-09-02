@@ -11,4 +11,5 @@ public class FormStation {
     int index;
     String jobtitle;
     String name;
+    String staffId;
 }
