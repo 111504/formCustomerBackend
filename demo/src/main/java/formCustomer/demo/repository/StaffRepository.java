@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface StaffRepository  extends JpaRepository<Staff, String> {
 
-    @Query("SELECT s FROM FormApprovalflow f LEFT JOIN Staff s ON f.staffCode = s.staffCode WHERE f.form.formId = :formId")
-    List<Staff> findStaffDetailsByFormId(@Param("formId") int formId);
+    @Query("SELECT s FROM DefaultApprovalFlow f LEFT JOIN Staff s ON f.defaultStaffCode = s.staffCode WHERE f.formType=?1")
+    List<Staff> findStaffDefaultByFormType(@Param("formType") String formType);
 }
 

@@ -1,4 +1,4 @@
-package formCustomer.demo.entity.system;
+package formCustomer.demo.entity.system.form;
 
 
 import jakarta.persistence.Entity;
@@ -12,15 +12,15 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 @Entity
-@Table(name="Forms")//資料庫名稱
+@Table(name= "deviceform")//資料庫名稱
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Form {
+public class DeviceForm {
     //主鍵
     @Id
     @Column(name = "form_id")
-    private int formId;
+    private String formId;
 
     @Column(name = "submitter_id", length = 20)
     private String submitterId;
@@ -30,5 +30,11 @@ public class Form {
 
     @Column(name = "form_type", length = 50)
     private String formType;
+
+    @Column(name = "current_approval_order")
+    private int currentApprovalOrder;
+
+    @Column(name = "current_approver_id" ,length = 20)
+    private String currentApprovalId;
 
 }

@@ -1,4 +1,4 @@
-package formCustomer.demo.entity.system;
+package formCustomer.demo.entity.system.form;
 
 
 import jakarta.persistence.*;
@@ -20,8 +20,8 @@ public class FormApprovalflow {
     private Integer flowId;
 
     @ManyToOne
-    @JoinColumn(name = "form_id", foreignKey = @ForeignKey(name = "formapprovalflow_ibfk_1"))
-    private Form form;
+    @JoinColumn(name = "form_id", foreignKey = @ForeignKey(name = "formapprovalflow_deviceform_form_id_fk"))
+    private DeviceForm deviceForm;
 
     @Column(name = "staff_code", length = 20)
     private String staffCode;
@@ -39,8 +39,8 @@ public class FormApprovalflow {
     @Column(name = "comments", length = 255)
     private String comments;
 
-    public FormApprovalflow(Form form, String staffCode, Integer approvalOrder, String approvalStatus, Date approvalDate, String comments) {
-        this.form = form;
+    public FormApprovalflow(DeviceForm deviceForm, String staffCode, Integer approvalOrder, String approvalStatus, Date approvalDate, String comments) {
+        this.deviceForm = deviceForm;
         this.staffCode = staffCode;
         this.approvalOrder = approvalOrder;
         this.approvalStatus = approvalStatus;
