@@ -2,6 +2,7 @@ package formCustomer.demo.controller;
 
 
 import formCustomer.demo.dto.DeviceFormDto;
+import formCustomer.demo.dto.FormToSignDto;
 import formCustomer.demo.entity.system.Staff;
 import formCustomer.demo.service.FormService;
 import formCustomer.demo.vo.response.FormStation;
@@ -51,16 +52,24 @@ public class deviceFormController {
     //傳送表單內容 以及 表單修改後的簽核順序 創建人
     @PostMapping("/formContent")
     public String submitFormContent(@RequestBody DeviceFormDto deviceFormDto) {
-        // 傳輸表單內容 簽核順序  創建人 創建表單時間 產生表單唯一編號  是哪一種表單
         try {
-            //
-            System.out.println("表單資訊"+deviceFormDto);
             formService.processFormSubmission(deviceFormDto);
             return RestBean.success().asJsonString();
         } catch (Exception e) {
-            return RestBean.success().asJsonString();
+            return RestBean.failure(504,"error").asJsonString();
         }
     }
+
+    //傳送員工編號 回傳該員工需要簽核的表單資訊
+    @GetMapping("/formNeedToSign")
+    public String submitFormNeedToSign(@RequestParam String currentApprovalId) {
+        System.out.println(currentApprovalId);
+    // 從 Service 層取得需要簽核的表單
+        List<FormToSignDto> formsToSign = service.getFormNeedToSign(currentApprovalId);
+        System.out.println("formsToSign="+formsToSign);
+        return RestBean.success(formsToSign).asJsonString();
+    }
+
 }
 
 

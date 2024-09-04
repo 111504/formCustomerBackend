@@ -1,10 +1,13 @@
 package formCustomer.demo.dto;
 
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
 
+@Setter
 @Data
+@Getter
+@AllArgsConstructor
 public class DeviceFormDto {
     private String applicant;//申請人
     private String purchaseDate;//請購日期
@@ -19,11 +22,12 @@ public class DeviceFormDto {
     // Getters and Setters
 
     public static class ItemDto {
+
         private String itemCode;//設備編號
         private String itemName;//品名
-        private String itemQty;//請購數量
-        private String itemPrice;//單價
-        private String itemAmount;//請購金額
+        private Integer itemQty;//請購數量
+        private Double itemPrice;//單價
+        private Double itemAmount;//請購金額
 
         public String getItemCode() {
             return itemCode;
@@ -41,29 +45,32 @@ public class DeviceFormDto {
             this.itemName = itemName;
         }
 
-        public String getItemQty() {
+        public Integer getItemQty() {
             return itemQty;
         }
 
-        public void setItemQty(String itemQty) {
+        public void setItemQty(Integer itemQty) {
             this.itemQty = itemQty;
         }
 
-        public String getItemPrice() {
+        public Double getItemPrice() {
             return itemPrice;
         }
 
-        public void setItemPrice(String itemPrice) {
+        public void setItemPrice(Double itemPrice) {
             this.itemPrice = itemPrice;
         }
 
-        public String getItemAmount() {
+        public Double getItemAmount() {
             return itemAmount;
         }
 
-        public void setItemAmount(String itemAmount) {
+        public void setItemAmount(Double itemAmount) {
             this.itemAmount = itemAmount;
         }
+
+
+
     }
 
     public static class StationDto {

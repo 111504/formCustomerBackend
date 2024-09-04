@@ -22,7 +22,7 @@ public class Tool {
           int randomIndex = random.nextInt(characters.length());
           sb.append(characters.charAt(randomIndex));
       }
-      return sb.toString();
+      return  sdf.toString()+sb.toString();
   }
     public static Date getCurrentDate() {
         long millis=System.currentTimeMillis();
