@@ -21,4 +21,10 @@ public interface DeviceFormRepository extends JpaRepository<DeviceForm, String>{
 
     // List<Staff> findStaffDefaultByFormType(@Param("formType") String formType);
 
+    @Query(value = "SELECT f.form_id, f.current_approver_id,f.current_approval_order, f.submit_date, f.form_type, s.staff_name " +
+            "FROM DeviceForm f " +
+            "LEFT JOIN Staff s ON f.current_approver_id = s.staff_code  " +
+            "WHERE f.submitter_id = ?1",nativeQuery = true)
+             List<Object[]>  findFormOwnSub(String submitterId);
+
 }

@@ -2,6 +2,7 @@ package formCustomer.demo.service;
 
 
 import formCustomer.demo.dto.DeviceFormDto;
+import formCustomer.demo.dto.FormFromOwnDto;
 import formCustomer.demo.dto.FormToSignDto;
 import formCustomer.demo.entity.system.form.DeviceForm;
 import formCustomer.demo.entity.system.Staff;
@@ -90,6 +91,32 @@ public class FormService {
         }
         return formsToSign;
 
+    }
+
+    public List<FormFromOwnDto> getOwnFormSubmit(String currentSubmit){
+        List<Object[]> results=deviceFormRepository.findFormOwnSub(currentSubmit);
+        List<FormFromOwnDto> formFromOwnDtos = new ArrayList<>();
+        for (Object[] row : results) {
+            System.out.println("Form ID: " + row[0]);
+            System.out.println("Current Approval ID: " + row[1]);
+            System.out.println("Current Approval Order: " + row[2]);
+            System.out.println("Submit Date: " + row[3]);
+            System.out.println("Form type: " + row[4]);
+            System.out.println("Staff name: " + row[4]);
+            System.out.println("---------------");
+        }
+        for (Object[] row : results) {
+            FormFromOwnDto dto = new FormFromOwnDto(
+                    (String) row[0], // form_id
+                    (String) row[1], // Current Approval ID
+                    (int) row[2],   // Current Approval Order
+                    (Date) row[3], // Submit Date
+                    (String) row[4],  // Form type
+                    (String) row[5]  //stuffName
+            );
+            formFromOwnDtos.add(dto);
+        }
+        return formFromOwnDtos;
     }
 
     //處理表單傳送過來的訊息

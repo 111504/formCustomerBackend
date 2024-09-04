@@ -2,6 +2,7 @@ package formCustomer.demo.controller;
 
 
 import formCustomer.demo.dto.DeviceFormDto;
+import formCustomer.demo.dto.FormFromOwnDto;
 import formCustomer.demo.dto.FormToSignDto;
 import formCustomer.demo.entity.system.Staff;
 import formCustomer.demo.service.FormService;
@@ -66,8 +67,22 @@ public class deviceFormController {
         System.out.println(currentApprovalId);
     // 從 Service 層取得需要簽核的表單
         List<FormToSignDto> formsToSign = service.getFormNeedToSign(currentApprovalId);
+        if (formsToSign.isEmpty()) {
+            return RestBean.success().asJsonString();
+        }
         System.out.println("formsToSign="+formsToSign);
         return RestBean.success(formsToSign).asJsonString();
+    }
+    @GetMapping("/formOwnSub")
+    //傳送員工編號 回傳該員工需要簽核的表單資訊
+    public String FormOwnSubmit(@RequestParam String currentApprovalId){
+
+        List<FormFromOwnDto> formFromOwnDtos=service.getOwnFormSubmit(currentApprovalId);
+        if (formFromOwnDtos.isEmpty()) {
+            return RestBean.success().asJsonString();
+        }
+        System.out.println("formFromOwnDtos="+formFromOwnDtos);
+        return RestBean.success(formFromOwnDtos).asJsonString();
     }
 
 }
